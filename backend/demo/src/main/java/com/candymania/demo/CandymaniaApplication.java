@@ -9,5 +9,5 @@ public class CandymaniaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CandymaniaApplication.class, args);
 	}
-
+	int number= 10;
 }
