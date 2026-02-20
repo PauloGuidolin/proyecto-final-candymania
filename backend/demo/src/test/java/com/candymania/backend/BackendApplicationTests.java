@@ -1,10 +1,10 @@
-package com.candymania.demo;
+package com.candymania.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CandymaniaApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

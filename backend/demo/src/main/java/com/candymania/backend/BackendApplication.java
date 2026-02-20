@@ -1,13 +1,13 @@
-package com.candymania.demo;
+package com.candymania.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class CandymaniaApplication {
+public class BackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CandymaniaApplication.class, args);
+		SpringApplication.run(BackendApplication.class, args);
 	}
-	int number= 10;
+
 }
