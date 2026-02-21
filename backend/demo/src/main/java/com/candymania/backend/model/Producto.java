@@ -14,7 +14,8 @@ public class Producto {
 
     private Long id;
     private String nombre;
-    private String Descripcion;
-    private String imagenUrl;
+    private String descripcion;
+    @Column(name = "imagen_url", nullable = true) // 'true' permite que esté vacío
+    private String imagen_url;
     private Double precio;
 }
