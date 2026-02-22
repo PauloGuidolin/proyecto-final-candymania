@@ -1,9 +1,35 @@
-import React, { useState } from 'react';
-import AdminProductos from './adminProduct';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { auth } from '../firebase/config'; // Ajustá la ruta si es necesario
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+
 
 function Hero() { // Convención: Los componentes en React empiezan con Mayúscula
     const [abierto, setAbierto] = useState(false);
+    const [usuario, setUsuario] = useState(null); // Estado para guardar la información del usuario
+    const navigate = useNavigate(); // Hook para navegación programática
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (userFirebase) => { // Escuchamos los cambios en la autenticación
+            if (userFirebase) { // Si hay un usuario autenticado, guardamos su información en el estado
+                setUsuario(userFirebase);
+            } else {
+                setUsuario(null);
+            }
+        });
+        return () => unsubscribe(); // Limpiamos el listener cuando el componente se desmonta
+    }, []);
+
+    const cerrarSesion = async () => {
+        try {
+
+            await signOut(auth) // Cerramos la sesión del usuario
+            alert('Sesión cerrada. ¡Hasta luego!'); // Mensaje de despedida
+            navigate("/"); // Redirigimos al inicio después de cerrar sesión
+        } catch (error) {
+            alert('Error al cerrar sesión. Por favor, intenta de nuevo.'); // Mensaje de error en caso de fallo
+        }
+    }
+
 
     return (
         <section id="navegacion" className="p-10 flex items-center justify-between lg:justify-evenly relative ">
@@ -60,13 +86,34 @@ function Hero() { // Convención: Los componentes en React empiezan con Mayúscu
 
             </div>
 
-            {/* REDES (Escritorio): hidden en móvil, flex en md */}
-            <div className="hidden md:flex admin-redes text-[#879aee] gap-5 font-mono font-bold text-lg">
-                <Link to="/admin" className="hover:text-white">
-                    <i className="fa-solid fa-user text-2xl text-[#bdf5f0]"></i>
-                </Link>
-                <a href="" className="hover:text-white"><i className="fa-brands fa-instagram text-2xl text-[#bdf5f0] hover:text-white"></i></a>
-                <a href="" className="hover:text-white"><i className="fa-solid fa-cart-arrow-down text-2xl text-[#bdf5f0] hover:text-white"></i></a>
+            <div className="hidden md:flex admin-redes text-[#879aee] gap-5 font-mono font-bold text-lg items-center">
+
+                {/* LÓGICA DE USUARIO */}
+                {usuario ? (
+                    // SI HAY USUARIO: Mostramos botón de salir
+                    <button
+                        onClick={cerrarSesion}
+                        className="hover:text-white flex items-center gap-2"
+                        title="Cerrar Sesión"
+                    >
+                        <i className="fa-solid fa-right-from-bracket text-2xl text-[#bdf5f0]"></i>
+                        <span className="text-xs uppercase">Salir</span>
+                    </button>
+                ) : (
+                    // SI NO HAY USUARIO: Mostramos el link al login que ya tenías
+                    <Link to="/login" className="hover:text-white">
+                        <i className="fa-solid fa-user text-2xl text-[#bdf5f0]"></i>
+                        <span className='p-2'>Ingresar</span>
+                    </Link>
+                )}
+
+                {/* TUS OTROS ICONOS (Instagram y Carrito) */}
+                <a href="" className="hover:text-white">
+                    <i className="fa-brands fa-instagram text-2xl text-[#bdf5f0]"></i>
+                </a>
+                <a href="" className="hover:text-white">
+                    <i className="fa-solid fa-cart-arrow-down text-2xl text-[#bdf5f0]"></i>
+                </a>
             </div>
 
         </section >

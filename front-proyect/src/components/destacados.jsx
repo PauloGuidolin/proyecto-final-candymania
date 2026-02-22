@@ -25,7 +25,7 @@ function destacados() {
         traerProductos();
     }, []);
 
-    if (cargando) return <p className='text-center py-20 font-black'>CARGANDO PRODUCTOS</p>
+    if (cargando) return <p className='text-center py-20 font-black text-white'>CARGANDO PRODUCTOS</p>
     return (
         <section className="py-20 px-6">
             <div className="max-w-7xl mx-auto">
