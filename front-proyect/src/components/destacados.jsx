@@ -42,26 +42,33 @@ function destacados() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* 1. Usamos 'productos' que es tu estado con la lista */}
                     {productos.map((p) => (
-                        <div key={p.id} className="group bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl transition-all duration-500">
+                        <div key={p.id} className="group bg-white rounded-[2.5rem] p-4 shadow-sm hover:shadow-2xl transition-all duration-500 w-full ">
 
                             {/* 2. IMPORTANTE: Usar p.imagen_url (así se llama en tu base de datos) */}
-                            <div className="relative h-64 w-full overflow-hidden rounded-[2rem] bg-gray-100">
+                            <div className="relative h-64 overflow-hidden rounded-[2rem] bg-gray-100">
                                 <img
                                     src={p.imagen_url}
                                     alt={p.nombre}
-                                    className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                                    className=" h-full w-full object-cover transition-transform group-hover:scale-110"
                                 />
                             </div>
 
                             <div className="pt-6 px-2">
                                 <div className="flex justify-between items-start mb-2">
                                     {/* 3. Usamos p.nombre y p.precio */}
-                                    <h4 className="text-xl font-black text-gray-900">{p.nombre}</h4>
-                                    <span className="text-[#7ed957] font-black text-xl">${p.precio}</span>
+                                    <h4 className="text-2 font-black text-gray-400">{p.nombre}</h4>
+
+                                </div>
+                                
+                                <div className='flex justify-between items-center'>
+                                <span className="text-gray-700 font-black text-3xl border-2 p-2 rounded-lg">${p.precio},00</span>
+                                <span className="text-red-600 font-black text-1xl line-through">${p.precio + 1500}.00</span>
+
                                 </div>
 
+
                                 {/* 4. Usamos p.descripcion */}
-                                <p className="text-gray-500 text-sm font-medium line-clamp-2 mb-6">
+                                <p className="text-gray-500 text-sm font-medium line-clamp-2 mb-6 mt-2">
                                     {p.descripcion}
                                 </p>
 

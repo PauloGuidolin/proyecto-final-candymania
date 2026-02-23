@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 function footer() {
     return (
 
-        <footer className="bg-[#bdf5f0] border-t border-gray-100 pt-16 pb-8 px-6">
+        <footer className="bg-[#bdf5f0] border-t border-gray-100 pt-7 pb-3 ">
             <div className="max-w-7xl mx-auto">
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-2 mb-6">
 
                     {/* COLUMNA 1: MARCA */}
-                    <div className="space-y-6">
+                    <div className="space-y-4">
                         <h2 className="text-2xl font-black tracking-tighter text-black">
                             CANDY<span className="text-[#cb6ce6]">MANIA</span>
                         </h2>
@@ -68,7 +68,7 @@ function footer() {
                 </div>
 
                 {/* CRÉDITOS FINALES */}
-                <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="border-t border-gray-100 pt flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-black text-xs font-medium">
                         © 2026 Candymania Mendoza. Todos los derechos reservados.
                     </p>

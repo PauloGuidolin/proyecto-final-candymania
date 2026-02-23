@@ -53,7 +53,7 @@ function Hero() { // Convención: Los componentes en React empiezan con Mayúscu
 
             {/* RUTAS (Escritorio): hidden en móvil, flex en pantallas medianas (md) */}
             <div className="hidden md:flex rutas text-[#bdf5f0] gap-3 font-mono font-bold text-lg">
-                <a href="" className="text-lg font-sans font-bold text-[#bdf5f0] hover:text-white">Inicio</a>
+                <Link to={"/"} className='text-lg font-sans font-bold text-[#bdf5f0] hover:text-white'>Inicio</Link>
                 <Link className='text-lg font-sans font-bold text-[#bdf5f0] hover:text-white' to="/nosotros">
                     Nosotros
                 </Link>
@@ -91,19 +91,30 @@ function Hero() { // Convención: Los componentes en React empiezan con Mayúscu
                 {/* LÓGICA DE USUARIO */}
                 {usuario ? (
                     // SI HAY USUARIO: Mostramos botón de salir
+
                     <button
                         onClick={cerrarSesion}
                         className="hover:text-white flex items-center gap-2"
                         title="Cerrar Sesión"
                     >
                         <i className="fa-solid fa-right-from-bracket text-2xl text-[#bdf5f0]"></i>
-                        <span className="text-xs uppercase">Salir</span>
+                        <span className="">Salir</span>
                     </button>
                 ) : (
                     // SI NO HAY USUARIO: Mostramos el link al login que ya tenías
                     <Link to="/login" className="hover:text-white">
                         <i className="fa-solid fa-user text-2xl text-[#bdf5f0]"></i>
                         <span className='p-2'>Ingresar</span>
+                    </Link>
+                )}
+
+                {/* BOTÓN DE ADMIN: Solo aparece si el mail es el tuyo */}
+                {usuario?.email === "paulog162003@gmail.com" && (
+                    <Link to="/admin">
+                        <button className='flex gap-2 hover:text-white'>
+                            <i className="fa-solid fa-user text-2xl text-[#bdf5f0]"></i>
+                            <p>Admin</p>
+                        </button>
                     </Link>
                 )}
 
